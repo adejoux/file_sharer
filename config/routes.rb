@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'default#index'
+  resources :documents
+
+  root to: 'documents#index'
 end

@@ -75,3 +75,6 @@ gem 'dotenv-rails', :group => [ :development, :test ]
 # added pagination and forms enhancement
 gem 'simple_form'
 gem 'kaminari'
+
+gem 'carrierwave'
+

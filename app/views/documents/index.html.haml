@@ -1,0 +1,25 @@
+%h1 Listing documents
+
+%table
+  %tr
+    %th Name
+    %th file
+    %th creation date
+    %th Actions
+
+
+  - @documents.each do |doc|
+    %tr
+      %td
+        = image_tag image_path('mini_file.png')
+        = doc.name
+      %td= link_to doc.file_identifier, doc.file_url
+      %td= doc.created_at
+      %td
+        = link_to 'Show', doc, :class => "btn btn-xs btn-primary"
+        = link_to 'Edit', edit_document_path(doc), :class => "btn btn-xs btn-primary"
+        = link_to 'Destroy', doc, :method => :delete, :class => "btn btn-xs btn-danger"
+
+%br
+
+= link_to 'New Document', new_document_path, :class => "btn btn-xs btn-primary"
