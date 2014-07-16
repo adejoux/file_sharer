@@ -1,11 +1,10 @@
 %h1 Listing documents
 
-%table
+%table.table.table-bordered
   %tr
     %th Name
     %th file
     %th creation date
-    %th Actions
 
 
   - @documents.each do |doc|
@@ -15,10 +14,6 @@
         = doc.name
       %td= link_to doc.file_identifier, doc.file_url
       %td= doc.created_at
-      %td
-        = link_to 'Show', doc, :class => "btn btn-xs btn-primary"
-        = link_to 'Edit', edit_document_path(doc), :class => "btn btn-xs btn-primary"
-        = link_to 'Destroy', doc, :method => :delete, :class => "btn btn-xs btn-danger"
 
 %br
 

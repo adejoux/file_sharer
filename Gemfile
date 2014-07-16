@@ -58,7 +58,7 @@ gem "pg"
 
 # development helpers
 gem "better_errors", :group => :development
-gem "binding_of_caller", :group => :development, :platforms => [:mri_19, :rbx]
+gem "binding_of_caller", :group => :development, :platforms => [:mri_21, :rbx]
 
 # quiet assets
 gem 'quiet_assets'

@@ -18,6 +18,7 @@ class DocumentsController < ApplicationController
   end
 
   def new
+    @folder = params[:folder]
     @document = Document.new
 
     respond_to do |format|
@@ -31,10 +32,10 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'document was successfully created.' }
-        format.json { render json: @document, status: :created, location: @document }
+        format.html { redirect_to folder_path(@document.folder), notice: 'document was successfully created.' }
+        format.json { render json: folder_path(@document.folder), status: :created, location: @document }
       else
-        format.html { render action: "new" }
+        format.html { render new_document_path(@document.folder) }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
@@ -56,6 +57,6 @@ class DocumentsController < ApplicationController
 
   private
   def document_params
-    params.require(:document).permit(:name, :file)
+    params.require(:document).permit(:name, :file, :folder_id)
   end
 end

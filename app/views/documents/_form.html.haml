@@ -4,6 +4,7 @@
   .form-inputs
     = f.input :name
     = f.input :file
+    = f.hidden_field :folder_id, value: @folder
 
   .form-actions
     = f.button :submit

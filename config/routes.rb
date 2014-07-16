@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :documents
+  resources :documents, except: [:update, :edit, :destroy]
+  resources :folders, except: [:update, :edit, :destroy]
 
-  root to: 'documents#index'
+  root to: 'folders#index'
 end
