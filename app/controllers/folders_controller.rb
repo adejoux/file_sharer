@@ -4,7 +4,7 @@ class FoldersController < ApplicationController
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.where(parent_id: nil)
+    @folders = Folder.roots
   end
 
   # GET /folders/1
@@ -15,8 +15,7 @@ class FoldersController < ApplicationController
 
   # GET /folders/new
   def new
-    @parent = params[:folder]
-    @folder = Folder.new
+    @folder = Folder.new(parent_id: params[:parent_id])
   end
 
   # GET /folders/1/edit

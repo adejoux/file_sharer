@@ -78,3 +78,4 @@ gem 'kaminari'
 
 gem 'carrierwave'
 
+gem 'ancestry'
