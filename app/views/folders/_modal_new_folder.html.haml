@@ -1,0 +1,9 @@
+#modal-new-folder.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{"data-dismiss" => "modal"} ×
+        %h3 new folder
+      .modal-body
+        = render partial: 'form', locals: { folder: @new_folder}
+      .modal-footer

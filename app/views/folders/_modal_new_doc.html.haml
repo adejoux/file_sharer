@@ -1,0 +1,8 @@
+#modal-new-doc.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %a.close{"data-dismiss" => "modal"} ×
+        %h3 new document
+      .modal-body
+        = render partial: 'documents/form', locals: { document: @new_document }

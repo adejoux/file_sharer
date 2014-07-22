@@ -1,10 +1,9 @@
-= simple_form_for @document, :html => {:multipart => true} do |f|
+= simple_form_for document, :html => {:multipart => true} do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :name
     = f.input :file
-    = f.hidden_field :folder_id, value: @folder
+    = f.hidden_field :folder_id
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: "btn btn-success"

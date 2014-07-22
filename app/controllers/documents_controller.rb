@@ -57,6 +57,6 @@ class DocumentsController < ApplicationController
 
   private
   def document_params
-    params.require(:document).permit(:name, :file, :folder_id)
+    params.require(:document).permit(:file, :folder_id)
   end
 end

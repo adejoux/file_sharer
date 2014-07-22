@@ -10,7 +10,8 @@ class FoldersController < ApplicationController
   # GET /folders/1
   # GET /folders/1.json
   def show
-
+    @new_folder = Folder.new(parent_id: @folder.id)
+    @new_document = Document.new(folder_id: @folder.id)
   end
 
   # GET /folders/new

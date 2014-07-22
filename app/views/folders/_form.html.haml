@@ -1,14 +1,14 @@
-= simple_form_for @folder do |f|
-  - if @folder.errors.any?
+= simple_form_for folder do |f|
+  - if folder.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@folder.errors.count, "error")} prohibited this folder from being saved:"
+      %h2= "#{pluralize(folder.errors.count, "error")} prohibited this folder from being saved:"
       %ul
-        - @folder.errors.full_messages.each do |msg|
+        - folder.errors.full_messages.each do |msg|
           %li= msg
     = f.error_notification
 
   .form-inputs
-    = f.input :name
+    = f.input :name, input_html: { maxlength: 20 }
     = f.hidden_field :parent_id
 
   .form-actions
