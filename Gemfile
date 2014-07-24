@@ -79,3 +79,5 @@ gem 'kaminari'
 gem 'carrierwave'
 
 gem 'ancestry'
+
+gem 'devise'

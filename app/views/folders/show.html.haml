@@ -7,26 +7,29 @@
         &gt;
       = @folder.name
   .col-md-2
-    = link_to 'New document', new_document_path(folder: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-doc'},  :class => 'btn'}
-    = link_to "new folder", new_folder_path(parent_id: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-folder'},  :class => 'btn'}
+    .menu_opt
+      = link_to 'New document', new_document_path(folder: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-doc'},  :class => 'btn'}
+    -if user_signed_in?
+      .menu_opt
+        = link_to "new folder", new_folder_path(parent_id: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-folder'},  :class => 'btn'}
   .col-md-10
     %ul.listing
       - if @folder.parent_id
-        %li
-          = link_to folder_path(@folder.parent_id) do
-            = image_tag image_path('mini_folder.png')
-            = '.. back'
+        %li= back_link(@folder.parent_id)
+
       - @folder.children.each do |folder|
-        %li
-          = link_to folder_path(folder) do
-            = image_tag image_path('mini_folder.png')
-            = folder.name
+        %li= folder_link(folder)
+
       - @folder.documents.each do |doc|
-        %li
-          = link_to doc.file_url do
-            = image_tag image_path('mini_file.png')
-            = doc.file_identifier
+        %li= file_link(doc)
+
+    - if @folder.documents.blank? && @folder.children.blank?
+      %b No files or folders
+
 = render 'modal_new_doc'
-= render 'modal_new_folder'
+
+-if user_signed_in?
+  = render 'modal_new_folder'
+
 
 

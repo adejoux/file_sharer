@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :documents, except: [:update, :edit, :destroy]
+  devise_for :users
+
+  scope "/admin" do
+    resources :users
+  end
+
+  resources :documents, except: [:update, :edit]
   resources :folders, except: [:update, :edit, :destroy]
 
   root to: 'folders#index'

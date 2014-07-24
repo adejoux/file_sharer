@@ -1,0 +1,16 @@
+//= depends_on "variables"
+//= depends_on "mixins"
+//= depends_on "folders"
+
+@import "bootstrap-sprockets"
+@import "bootstrap"
+
+main
+  @extend .container
+  padding-bottom: 80px
+  width: 100%
+  margin-top: 51px // accommodate the navbar
+
+@import "variables"
+@import "mixins"
+@import "folders"

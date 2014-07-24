@@ -1,20 +1,15 @@
 class DocumentsController < ApplicationController
+  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:index, :edit, :update, :destroy]
   def index
-    @documents = Document.all
+    @documents = Document.page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @documents }
     end
   end
 
   def show
-    @document = Document.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @document }
-    end
   end
 
   def new
@@ -23,7 +18,6 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @document }
     end
   end
 
@@ -33,10 +27,8 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.save
         format.html { redirect_to folder_path(@document.folder), notice: 'document was successfully created.' }
-        format.json { render json: folder_path(@document.folder), status: :created, location: @document }
       else
         format.html { render new_document_path(@document.folder) }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,15 +39,25 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.update_attributes(document_params)
         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  def destroy
+    @document.destroy
+
+    respond_to do |format|
+      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
+    end
+  end
+
   private
+  def set_document
+    @document = Document.find(params[:id])
+  end
+
   def document_params
     params.require(:document).permit(:file, :folder_id)
   end

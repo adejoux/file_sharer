@@ -1,10 +1,19 @@
-%h1 Listing folders
+.container
+  .col-md-12
+    %h1 Listing folders
 
-%ul.ca-menu
-  - @folders.each do |folder|
-    %li
-      = link_to folder_path(folder) do
-        = image_tag image_path('mini_folder.png')
-        = folder.name
+  .col-md-2
+    -if user_signed_in?
+      .menu_opt
+        = link_to "new folder", new_folder_path(parent_id: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-folder'},  :class => 'btn'}
+  .col-md-10
+    %ul.listing
+      - @folders.each do |folder|
+        %li= folder_link(folder)
 
-= link_to 'New Folder', new_folder_path, class: "btn btn-primary"
+      - if @folders.blank?
+        %b No files or folders
+
+-if user_signed_in?
+  = render 'modal_new_folder'
+
