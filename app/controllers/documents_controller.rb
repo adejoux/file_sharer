@@ -1,15 +1,13 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_document, only: [:edit, :update, :destroy]
   before_filter :authenticate_user!, only: [:index, :edit, :update, :destroy]
+
   def index
     @documents = Document.page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
     end
-  end
-
-  def show
   end
 
   def new

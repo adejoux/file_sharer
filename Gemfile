@@ -81,3 +81,5 @@ gem 'carrierwave'
 gem 'ancestry'
 
 gem 'devise'
+
+gem 'figaro'

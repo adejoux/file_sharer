@@ -12,6 +12,7 @@
     -if user_signed_in?
       .menu_opt
         = link_to "new folder", new_folder_path(parent_id: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-folder'},  :class => 'btn'}
+        = link_to "edit folder", edit_folder_path(@folder), class: 'btn'
   .col-md-10
     %ul.listing
       - if @folder.parent_id

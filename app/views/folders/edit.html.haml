@@ -1,6 +1,6 @@
 %h1 Editing folder
 
-= render 'form'
+= render partial: 'form', locals: { folder: @folder}
 
 = link_to 'Show', @folder
 \|
