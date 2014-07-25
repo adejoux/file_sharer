@@ -24,6 +24,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def approve
+    User.where(id: params[:approved_user_ids]).update_all({approved: true})
+    disapproved_user_ids = params[:user_ids] - params[:approved_user_ids]
+    User.where(id: disapproved_user_ids).update_all({approved: false})
+
+    redirect_to users_url, notice: 'Approvals was successfully updated.'
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user

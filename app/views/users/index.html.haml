@@ -1,16 +1,22 @@
 .col-md-12
   %h1 Listing users
 
-  %table.table.table-bordered
-    %thead
-      %tr
-        %th User
-        %th Actions
-    %tbody
-      - @users.each do |user|
+  = form_tag approve_users_path, method: :put do
+    %table.table.table-bordered
+      %thead
         %tr
-          %td= user.email
-          %td
-            = link_to "Change password", edit_user_path(user), class: "btn"
-            = link_to 'Delete', user_path(user), method: :delete, class: "btn btn-danger"
+          %th User
+          %th approved
+          %th Actions
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.email
+            %td
+              = check_box_tag "approved_user_ids[]", user.id, user.approved
+              = hidden_field_tag "user_ids[]", user.id
+            %td
+              = link_to "Change password", edit_user_path(user), class: "btn"
+              = link_to 'Delete', user_path(user), method: :delete, class: "btn btn-danger"
+    = submit_tag "Approve users", class: 'btn'
   = paginate @users

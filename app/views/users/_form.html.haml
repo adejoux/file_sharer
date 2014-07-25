@@ -11,6 +11,7 @@
     = f.input :email, input_html: { maxlength: 20 }
     = f.input :password, hint: false, error_html: { id: 'password_error'}, input_html: { maxlength: 20 }
     = f.input :password_confirmation, input_html: { maxlength: 20 }
+    = f.input :approved, label: false, inline_label: 'Approved'
 
   .form-actions
     = f.button :submit
