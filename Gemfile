@@ -4,7 +4,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', :platform=>:ruby
+gem 'activerecord-jdbcsqlite3-adapter', :platform=>:jruby
+gem 'jruby-openssl', :platform=>:jruby
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -48,13 +51,14 @@ gem 'thor'
 
 # add javascript runtime
 gem 'therubyracer', :platform=>:ruby
-
+gem 'therubyrhino', :platform=>:jruby
 #use thin and unicorn
-gem "thin", ">= 1.5.0", :group => [:development, :test]
-gem "unicorn", ">= 4.3.1", :group => :production
+gem "thin", ">= 1.5.0", :platform=>:ruby, :group => [:development, :test]
+gem "unicorn", ">= 4.3.1", :platform=>:ruby, :group => :production
+gem "trinidad", :group => :production
 
 #postgresql database
-gem "pg"
+#gem "pg"
 
 # development helpers
 gem "better_errors", :group => :development

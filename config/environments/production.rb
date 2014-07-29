@@ -80,6 +80,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.relative_url_root = "/file_sharer"
+  config.action_controller.relative_url_root = "/file_sharer"
+  #config.action_controller.relative_url_root = "/file_sharer"
   config.to_prepare { Devise::SessionsController.force_ssl }
   config.to_prepare { Devise::RegistrationsController.force_ssl }
   config.to_prepare { Devise::PasswordsController.force_ssl }

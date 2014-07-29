@@ -13,8 +13,16 @@ module FoldersHelper
   end
 
   def file_link(doc)
-    link_to doc.file_url do
+    link_to full_link(doc.file_url) do
       image_tag(image_path('mini_file.png') ) + doc.file_identifier
+    end
+  end
+
+  def full_link(file_url)
+    if ApplicationController.config.relative_url_root
+      ApplicationController.config.relative_url_root + file_url
+    else
+      file_url
     end
   end
 end
