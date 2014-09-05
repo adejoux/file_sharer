@@ -1,32 +1,43 @@
 .container
   .col-md-12
     %br
-    .breadcrumb
-      - @folder.ancestors.each do |folder|
-        = link_to folder.name, folder_path(folder)
-        &gt;
-      = @folder.name
+    = render partial: 'layouts/breadcrumb', locals: { folder: @folder }
   .col-md-2
     .menu_opt
-      = link_to 'New document', new_document_path(folder: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-doc'},  :class => 'btn'}
+      = link_to 'New document', new_document_path(folder: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-doc'},  :class => 'btn btn-block'}
     -if user_signed_in?
-      .menu_opt
-        = link_to "new folder", new_folder_path(parent_id: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-folder'},  :class => 'btn'}
-      .menu_opt
-        = link_to "edit folder", edit_folder_path(@folder), class: 'btn'
+      = render partial: 'menu_opt'
   .col-md-10
     %ul.listing
       - if @folder.parent_id
-        %li= back_link(@folder.parent_id)
+        %li
+          = link_to folder_path(@folder.parent_id) do
+            = fa_icon 'arrow-left'
+            = '..'
 
       - @folder.children.each do |folder|
-        %li= folder_link(folder)
+        %li
+          = link_to folder_path(folder) do
+            = fa_icon 'folder-o'
+            = folder.name
 
       - @folder.documents.each do |doc|
-        %li= file_link(doc)
+        %li
+          = link_to full_link(doc.file_url) do
+            = fa_icon 'file'
+            = doc.file_identifier
+          -if user_signed_in?
+            = link_to edit_document_path(doc) do
+              = fa_icon 'edit'
+            = link_to doc, method: 'delete' do
+              = fa_icon 'trash'
 
-    - if @folder.documents.blank? && @folder.children.blank?
-      %b No files or folders
+
+      - if @folder.documents.blank? && @folder.children.blank?
+        %li
+          = link_to folders_path do
+            = fa_icon 'arrow-left'
+            = '..'
 
 = render 'modal_new_doc'
 

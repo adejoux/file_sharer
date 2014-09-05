@@ -87,3 +87,5 @@ gem 'ancestry'
 gem 'devise'
 
 gem 'figaro'
+
+gem "font-awesome-rails"

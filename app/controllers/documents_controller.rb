@@ -19,6 +19,9 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def create
     @document = Document.new(document_params)
 
@@ -36,7 +39,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
+        format.html { redirect_to folder_path(@document.folder), notice: 'document was successfully updated.' }
       else
         format.html { render action: "edit" }
       end

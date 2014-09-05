@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :documents, except: [:update, :edit]
+  resources :documents
   resources :folders
 
   root to: 'folders#index'

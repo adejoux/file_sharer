@@ -1,0 +1,7 @@
+.menu_opt
+  = link_to "New folder", new_folder_path(parent_id: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-folder'},  :class => 'btn btn-block'}
+- if @folder
+  .menu_opt
+    = link_to "Edit folder", edit_folder_path(@folder), class: 'btn btn-block'
+  .menu_opt
+    = link_to "Delete folder",folder_path(@folder), method: :delete, class: "btn btn-danger btn-block"

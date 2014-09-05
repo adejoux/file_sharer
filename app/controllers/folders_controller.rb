@@ -25,6 +25,10 @@ class FoldersController < ApplicationController
   def edit
   end
 
+  def move
+    folder = Folder.find(params[:folder])
+  end
+
   # POST /folders
   # POST /folders.json
   def create

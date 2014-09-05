@@ -4,12 +4,14 @@
 
   .col-md-2
     -if user_signed_in?
-      .menu_opt
-        = link_to "new folder", new_folder_path(parent_id: @folder),  {:remote => true, :data => { :toggle => 'modal', :target => '#modal-new-folder'},  :class => 'btn'}
+      = render partial: 'menu_opt'
   .col-md-10
     %ul.listing
       - @folders.each do |folder|
-        %li= folder_link(folder)
+        %li
+          = link_to folder_path(folder) do
+            = fa_icon 'folder-o'
+            = folder.name
 
       - if @folders.blank?
         %b No files or folders
