@@ -8,7 +8,7 @@ current folder :
 
   .form-inputs
     = f.input :file
-    = f.association :folder, :prompt => "(select if none)"
+    = f.association :folder, :label_method => lambda { |folder| label_name(folder) }, :prompt => "(select if none)"
 
   .form-actions
     = f.button :submit, class: "btn"

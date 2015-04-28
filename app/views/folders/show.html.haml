@@ -9,11 +9,6 @@
       = render partial: 'menu_opt'
   .col-md-10
     %ul.listing
-      - if @folder.parent_id
-        %li
-          = link_to folder_path(@folder.parent_id) do
-            = fa_icon 'arrow-left'
-            = '..'
 
       - @folder.children.each do |folder|
         %li
@@ -32,13 +27,17 @@
             = link_to doc, method: 'delete' do
               = fa_icon 'trash'
 
-
-      - if @folder.documents.blank? && @folder.children.blank?
+      - if @folder.parent_id
+        %li
+          = link_to folder_path(@folder.parent_id) do
+            = fa_icon 'arrow-left'
+            = '..'
+      - else 
         %li
           = link_to folders_path do
             = fa_icon 'arrow-left'
             = '..'
-
+      
 = render 'modal_new_doc'
 
 -if user_signed_in?

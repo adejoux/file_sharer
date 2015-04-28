@@ -6,4 +6,12 @@ module FoldersHelper
       file_url
     end
   end
+
+  def label_name(folder)
+    if folder.parent
+      "#{folder.parent.name} -> #{folder.name}"
+    else
+      "#{folder.name}"
+    end
+  end
 end
